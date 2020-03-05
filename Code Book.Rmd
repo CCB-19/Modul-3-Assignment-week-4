@@ -1,0 +1,79 @@
+---
+title: "Code Book Assignment Modul 3 - Getting and Cleaning Data"
+author: "CCB-19"
+date: "3/3/2020"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+# **Code Book**
+
+The Data set used in this work  can be downloaded at the UC Irvine Machine Learning Repository under the name "Human Activity Recognition Using Smartphones Dataset"[1]. 
+To read more about the data origin refer to the site:
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+Download link from the data used in this assignment:
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+
+## Data Collection information:
+This data was collected from a study of 30 subjects(which were divided into two groups: 70% of the subjects in a Train group and 30% of the subjects in a Test group). The individuals had between 19 and 48 years old and were monitored, through the use of a smartphone, performing 6 activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING).
+The smartphone was worn around the waist and collected sensor signals from an accelerometer and a gyroscope. The measures taken from the accelerometer were 3-axial linear acceleration and 3-axial angular velocity from the gyroscope, at a constant rate of 50Hz intervals.
+
+
+## Files on the original UCI HAR Dataset
+1. Activity_labels.txt - Descriptive name of the activities performed and relation to each code
+2. features.txt - names of all the 561 features that were measured
+3. features_info.txt - information aboute the features meaning and how they were collected
+4. README.txt -  description of the study and data collection process as well as a description of all the files contained in the dataset
+  
+  + Subset Test
+  
+  1. subject_test.txt - the id of the subject for the 2947 observations of the 9 participants (30%) in the Test group. 
+  2. x_test.txt - the 2947 feature measures for each of the 9 subjects
+  3. y_test.txt - 2947 labels corresponding to the measure values in the x_test
+  
+*Inertials Signals file*
+    
+Not used in this project. 
+Has the measures for the body acceleration signal from the x, y and z axis(body_acc_x_test.txt, body_acc_y_test.txt, body_acc_z_test.txt) calculated subtracting the gravity from the total acceleration. 
+The total acceleration measures from the accelerometer in standard gravity units (g) for the 3 axis (total_acc_x_test.txt, total_acc_y_test.txt, total_acc_z_test.txt). 
+And the measures for the angular velocity vector measured with the gyroscope in units radian/second for the 3 axis (body_gyro_x_test.txt, body_gyro_y_test.txt, body_gyro_z_test.txt).
+ 
+  + Subset Train
+  
+  1. subject_train.txt - the id of the subject for the 7352 observations of the 21 participants (70%) in the Train group. 
+  2. x_train.txt - the 7352 feature measures for each of the 21 subjects
+  3. y_train.txt - 7352 labels corresponding to the measure values in the x_train
+  
+*Inertial Signals file*
+
+Not used in this project. 
+Has the measures for the body acceleration signal from the x, y and z axis(body_acc_x_train.txt, body_acc_y_train.txt, body_acc_z_train.txt) calculated subtracting the gravity from the total acceleration. 
+The total acceleration measures from the accelerometer in standard gravity units (g) for the 3 axis (total_acc_x_train.txt, total_acc_y_train.txt, total_acc_z_train.txt). 
+And the measures for the angular velocity vector measured with the gyroscope in units radian/second for the 3 axis (body_gyro_x_train.txt, body_gyro_y_train.txt, body_gyro_z_train.txt).
+    
+    
+## Description of the objects created for reading and Cleaning the Data:
+* sub_test - subject IDs from the test group
+* x_test - values of the variables in the test group
+* y_test - activity code in the test group
+* sub_train - subject IDs from the train group
+* x_train - values of variables in the train group
+* y_train - activity ID in the train group
+* act_name - descriptive names of the activity IDs in y_test and y_train files
+* features - Names of each variables in x_test and x_train files
+
+
+## End objects created:
+* data_new - Data Table which merged both Test and Train data sets. From which resulted 10299 observations from 563 variables (561 features+activity+subject id)
+* data_mean_std - Data containing only the features with the mean and standard deviaton (88 columns which contain mean or standard deviations measures)
+* new_dataset - data set rearrenged from the previous one with the mean value for all the measures, organized by Subject and Activity
+The new data set (new_dataset) was writen as a CSV file. It created a data frame with 180 observations(6 activities for each of the 30 subjects) for each of the 88 variables.
+
+
+
+
+
+      [1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
